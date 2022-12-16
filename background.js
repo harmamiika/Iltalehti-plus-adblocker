@@ -9,9 +9,15 @@ function hideElements(classname) {
     elements[i].style.display = 'none';
   }
 }
+console.log('yo');
+
+var backgroundPage = chrome.extension.getBackgroundPage();
+console.log(backgroundPage, 'backgroundPage');
 
 chrome.browserAction.onClicked.addListener(function (tab) {
+  console.log('yo2');
   chrome.tabs.executeScript({
-    code: 'hideElements(".classname");',
+    // code: 'hideElements(".classname");',
+    code: 'console.log("Hello, World!");',
   });
 });

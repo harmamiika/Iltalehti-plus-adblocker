@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "Element Hider",
+  "description": "This extension hides certain elements on a web page based on whether it has an element with a certain classname inside it.",
+  "version": "1.0",
+  "permissions": ["activeTab"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  }
+}

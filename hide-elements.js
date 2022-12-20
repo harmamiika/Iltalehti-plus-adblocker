@@ -20,6 +20,9 @@ const hideContainers = () => {
 
     let hidden = true;
     articles.forEach((article) => article.style.visibility !== 'hidden' && (hidden = false));
+    // cyrrently if one is not hidden, all are hidden
+    // v2: if every article is not hidden, hide articles, not container
+    // however currently there is no need for this, since if there is one hidden article, all articles in the container are hidden
 
     if (hidden) hide(container);
   });
@@ -41,3 +44,5 @@ function main() {
 }
 
 window.requestAnimationFrame(main);
+
+// Changes to the IL-site might break this script

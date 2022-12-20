@@ -1,34 +1,25 @@
-console.log('yo');
-
 // add hello world to the body
-document.body.appendChild(document.createTextNode('Hello World!'));
+// artles hidden text
 
-const hiddenElements = document.querySelectorAll('.hidden');
-console.log(hiddenElements, 'hidden elements initial');
+const hideArticles = () => {
+  const articles = document.querySelectorAll('.full-article, .half-article');
 
-document.addEventListener('DOMContentLoaded', function () {
-  console.log('Page loaded!');
-});
+  articles.forEach((article) => {
+    if (article.querySelector('.il-plus-svg-logo.inline')) {
+      // article.classList.add('none');
+      console.log(article, 'article');
+      // article.style.display = 'none';
+
+      article.style.visibility = 'hidden';
+    }
+  });
+};
+
+// small articles have class="half-article"
 
 document.addEventListener('scroll', function () {
-  console.log('scrolling');
-  const hiddenElements = document.querySelectorAll('.full-article');
+  hideArticles();
   // select items with classname full-article
-
-  // log document body contents
-  console.log(document.body);
-
-  console.log(hiddenElements);
+  // if article contains svg with classname 'il-plus-svg-logo inline'
+  // hide article
 });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   console.log('Page loaded!');
-// });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   console.log('executing');
-//   const hiddenElements = document.querySelectorAll('.hidden');
-//   hiddenElements.forEach(function (element) {
-//     element.style.display = 'none';
-//   });
-// });

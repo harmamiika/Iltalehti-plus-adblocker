@@ -45,4 +45,4 @@ function main() {
 
 window.requestAnimationFrame(main);
 
-// Changes to the IL-site might break this script
+// Changes to the IL-site might break this extension

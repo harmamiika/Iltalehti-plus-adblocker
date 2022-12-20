@@ -1,6 +1,3 @@
-// add hello world to the body
-// artles hidden text
-
 const hide = (element) => {
   element.style.visibility = 'hidden';
   element.style.height = '0px';
@@ -11,7 +8,7 @@ const hideArticles = () => {
   const articles = document.querySelectorAll('.full-article, .half-article');
   articles.forEach((article) => {
     if (article.querySelector('.il-plus-svg-logo.inline')) {
-      article.style.visibility = 'hidden';
+      hide(article);
     }
   });
 };
@@ -22,28 +19,25 @@ const hideContainers = () => {
     const articles = container.querySelectorAll('.full-article, .half-article');
 
     let hidden = true;
-    articles.forEach((article) => {
-      if (article.style.visibility !== 'hidden') {
-        hidden = false;
-      }
-    });
+    articles.forEach((article) => article.style.visibility !== 'hidden' && (hidden = false));
 
-    if (hidden) {
-      hide(container);
-    }
+    if (hidden) hide(container);
   });
 };
 
 const hideSticker = () => {
-  const newStick = document.querySelector('.newsticker-container');
-  hide(newStick);
+  const stickerItems = document.querySelectorAll('.newsticker-item');
+  stickerItems.forEach((stickerItem) => {
+    if (stickerItem.querySelector('.il-plus-svg-logo.inline')) {
+      hide(stickerItem);
+    }
+  });
 };
 
-document.addEventListener('scroll', function () {
+function main() {
   hideSticker();
   hideArticles();
   hideContainers();
-  // select items with classname full-article
-  // if article contains svg with classname 'il-plus-svg-logo inline'
-  // hide article
-});
+}
+
+window.requestAnimationFrame(main);

@@ -8,7 +8,7 @@
   "description": "Blocks 'Iltalehti+'-ads in iltalehti.fi",
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["https://www.iltalehti.fi/*"],
       "js": ["index.js"]
     }
   ],

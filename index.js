@@ -52,3 +52,7 @@ function main() {
 }
 
 window.requestAnimationFrame(main);
+
+// V2 roadmap (likely not coming):
+// - also hide sponsored segments
+// - (add to chrome extension store?)

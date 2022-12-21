@@ -10,9 +10,4 @@ Usage guide
 4. Unpack the extension folder
 5. Check that the extension is activated
 
-V2 roadmap (likely not coming):
-
-- also hide sponsored segments
-- (add to chrome extension store?)
-
 Note: Changes to the iltalehti.fi-website, might cause this extension to become deprecated

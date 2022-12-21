@@ -1,17 +1,22 @@
-const hide = (element) => {
+const hideElement = (element) => {
   element.style.visibility = 'hidden';
   element.style.height = '0px';
   element.style.paddingBottom = '0px';
+  element.style.marginBottom = '0px';
 };
 
 const hideArticles = () => {
   const articles = document.querySelectorAll('.full-article, .half-article');
   articles.forEach((article) => {
     if (article.querySelector('.il-plus-svg-logo.inline')) {
-      hide(article);
+      hideElement(article);
     }
   });
 };
+
+// cyrrently if one article inside container is hidden, all are hidden
+// v2: if every article is not hidden, hide articles, not container
+// however currently there is no need for this, since the site is structured so that if there is one hidden article, all articles in its container are hidden
 
 const hideContainers = () => {
   const containers = document.querySelectorAll('.card.fp-container');
@@ -19,30 +24,31 @@ const hideContainers = () => {
     const articles = container.querySelectorAll('.full-article, .half-article');
 
     let hidden = true;
-    articles.forEach((article) => article.style.visibility !== 'hidden' && (hidden = false));
-    // cyrrently if one is not hidden, all are hidden
-    // v2: if every article is not hidden, hide articles, not container
-    // however currently there is no need for this, since if there is one hidden article, all articles in the container are hidden
+    articles.forEach((article) => {
+      if (article.style.visibility !== 'hidden') {
+        hidden = false;
+      }
+    });
 
-    if (hidden) hide(container);
+    if (hidden) {
+      hideElement(container);
+    }
   });
 };
 
-const hideSticker = () => {
+const hideStickers = () => {
   const stickerItems = document.querySelectorAll('.newsticker-item');
   stickerItems.forEach((stickerItem) => {
     if (stickerItem.querySelector('.il-plus-svg-logo.inline')) {
-      hide(stickerItem);
+      hideElement(stickerItem);
     }
   });
 };
 
 function main() {
-  hideSticker();
+  hideStickers();
   hideArticles();
   hideContainers();
 }
 
 window.requestAnimationFrame(main);
-
-// Changes to the IL-site might break this extension

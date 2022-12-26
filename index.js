@@ -1,8 +1,8 @@
 const hideElement = (element) => {
   element.style.visibility = 'hidden';
   element.style.height = '0px';
-  element.style.paddingBottom = '0px';
-  element.style.marginBottom = '0px';
+  element.style.padding = '0px';
+  element.style.margin = '0px';
 };
 
 const hideArticles = () => {
@@ -14,15 +14,27 @@ const hideArticles = () => {
   });
 };
 
-// cyrrently if one article inside container is hidden, all are hidden
-// v2: if every article is not hidden, hide articles, not container
-// however currently there is no need for this, since the site is structured so that if there is one hidden article, all articles in its container are hidden
+const hideSponsoredSegments = () => {
+  const articleContainers = document.querySelectorAll('.card.fp-container');
+
+  articleContainers.forEach((articleContainer) => {
+    const article = articleContainer.querySelector('.full-article');
+    const imageContainers = article?.querySelectorAll('.list.image-container');
+    console.log(imageContainers?.length, 'imageContainers');
+    if (imageContainers?.length > 1) {
+      console.log('match');
+      hideElement(article);
+    }
+  });
+};
 
 const hideContainers = () => {
   const containers = document.querySelectorAll('.card.fp-container');
+
   containers.forEach((container) => {
     const articles = container.querySelectorAll('.full-article, .half-article');
 
+    // bit overcomplicated currently, but in the future this logic can be extended more easily
     let hidden = true;
     articles.forEach((article) => {
       if (article.style.visibility !== 'hidden') {
@@ -45,14 +57,29 @@ const hideStickers = () => {
   });
 };
 
-function main() {
+const hideElements = () => {
   hideStickers();
   hideArticles();
   hideContainers();
+};
+
+function main() {
+  hideElements();
+  // sometimes the page is not fully loaded when the script is run
+  setTimeout(hideElements, 1000);
+  setTimeout(hideElements, 3000);
 }
 
 window.requestAnimationFrame(main);
 
 // V2 roadmap (likely not coming):
 // - also hide sponsored segments
-// - (add to chrome extension store?)
+// sponsored segment: cardfpcontainer > full article has 2 elements with class list-image-container
+// also hide side ads
+
+// side article container
+// side-column-container show-true
+// TAI
+// side-column-content
+// itemit ovat a hrefejä
+// joiden sisällä plyus il logo

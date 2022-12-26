@@ -12,10 +12,10 @@ Usage guide
 
 Note: Changes to the iltalehti.fi-website might cause this extension to become deprecated, but for now it works really well :)
 
-<h3>Before</h3>
+<h3>Before:</h3>
 
 ![Screenshot of my application](./screenshot.png)
 
-<h3>After</h3>
+<h3>After:</h3>
 
 ![Screenshot2](./screenshot2.png)

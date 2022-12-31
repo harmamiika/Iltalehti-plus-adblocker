@@ -65,11 +65,12 @@ const hideElements = () => {
 
 function main() {
   hideElements();
-  // sometimes the page is not fully loaded when the script is run
-  setTimeout(hideElements, 1000);
-  setTimeout(hideElements, 3000);
-  setTimeout(hideElements, 5000);
-  setTimeout(hideElements, 10000);
+  let counter = 0;
+  const interval = setInterval(() => {
+    if (counter === 20) clearInterval(interval);
+    hideElements();
+    counter++;
+  }, 1000);
 }
 
 window.requestAnimationFrame(main);

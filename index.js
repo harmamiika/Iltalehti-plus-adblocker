@@ -34,7 +34,6 @@ const hideContainers = () => {
   containers.forEach((container) => {
     const articles = container.querySelectorAll('.full-article, .half-article');
 
-    // bit overcomplicated currently, but in the future this logic can be extended more easily
     let hidden = true;
     articles.forEach((article) => {
       if (article.style.visibility !== 'hidden') {
@@ -63,26 +62,22 @@ const hideElements = () => {
   hideContainers();
 };
 
-function main() {
-  hideElements();
-  let counter = 0;
-  const interval = setInterval(() => {
-    if (counter === 20) clearInterval(interval);
-    hideElements();
-    counter++;
-  }, 1000);
+function main(mutationsList) {
+  for (const mutation of mutationsList) {
+    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+      const addedNodes = Array.from(mutation.addedNodes);
+      const matchingNode = addedNodes.find((node) => node.matches && node.matches('.card'));
+      if (matchingNode) {
+        hideElements();
+      }
+    }
+
+    // jos haluaisi minomoida computen
+    // pitäisi tarkastella vain lisäyksiä
+    // eli kuunnella onko elementti tietynlainen ja sitten tehdä tarvittavat toimenpiteet
+  }
 }
 
-window.requestAnimationFrame(main);
+const observer = new MutationObserver(main);
 
-// V2 roadmap (likely not coming):
-// - also hide sponsored segments
-// sponsored segment: cardfpcontainer > full article has 2 elements with class list-image-container
-// also hide side ads
-
-// side article container
-// side-column-container show-true
-// TAI
-// side-column-content
-// itemit ovat a hrefejä
-// joiden sisällä plyus il logo
+observer.observe(document, { childList: true, subtree: true });

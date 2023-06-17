@@ -16,13 +16,10 @@ const hideArticles = () => {
 
 const hideSponsoredSegments = () => {
   const articleContainers = document.querySelectorAll('.card.fp-container');
-
   articleContainers.forEach((articleContainer) => {
     const article = articleContainer.querySelector('.full-article');
     const imageContainers = article?.querySelectorAll('.list.image-container');
-    console.log(imageContainers?.length, 'imageContainers');
     if (imageContainers?.length > 1) {
-      console.log('match');
       hideElement(article);
     }
   });
@@ -30,17 +27,14 @@ const hideSponsoredSegments = () => {
 
 const hideContainers = () => {
   const containers = document.querySelectorAll('.card.fp-container');
-
   containers.forEach((container) => {
     const articles = container.querySelectorAll('.full-article, .half-article');
-
     let hidden = true;
     articles.forEach((article) => {
       if (article.style.visibility !== 'hidden') {
         hidden = false;
       }
     });
-
     if (hidden) {
       hideElement(container);
     }
@@ -66,18 +60,12 @@ function main(mutationsList) {
   for (const mutation of mutationsList) {
     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
       const addedNodes = Array.from(mutation.addedNodes);
-      const matchingNode = addedNodes.find((node) => node.matches && node.matches('.card'));
-      if (matchingNode) {
+      if (addedNodes.find((node) => node.matches && node.matches('.card'))) {
         hideElements();
       }
     }
-
-    // jos haluaisi minomoida computen
-    // pitäisi tarkastella vain lisäyksiä
-    // eli kuunnella onko elementti tietynlainen ja sitten tehdä tarvittavat toimenpiteet
   }
 }
 
 const observer = new MutationObserver(main);
-
 observer.observe(document, { childList: true, subtree: true });

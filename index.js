@@ -8,7 +8,7 @@ const hideElement = (element) => {
 const hideArticles = () => {
   const articles = document.querySelectorAll('.full-article, .half-article');
   articles.forEach((article) => {
-    if (article.querySelector('.il-plus-svg-logo.inline')) {
+    if (article.querySelector('.il-plus-svg-logo.inline') || article.querySelector('.front-sponsored-heading')) {
       hideElement(article);
     }
   });
@@ -61,11 +61,14 @@ function main(mutationsList) {
     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
       const addedNodes = Array.from(mutation.addedNodes);
       if (addedNodes.find((node) => node.matches && node.matches('.card'))) {
+        console.log('yo ');
         hideElements();
       }
     }
   }
 }
+
+// front-sponsored-heading
 
 const observer = new MutationObserver(main);
 observer.observe(document, { childList: true, subtree: true });

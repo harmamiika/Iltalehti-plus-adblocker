@@ -29,13 +29,13 @@ const hideContainers = () => {
   const containers = document.querySelectorAll('.card.fp-container');
   containers.forEach((container) => {
     const articles = container.querySelectorAll('.full-article, .half-article');
-    let hidden = true;
+    let allArticlesAreHidden = true;
     articles.forEach((article) => {
       if (article.style.visibility !== 'hidden') {
-        hidden = false;
+        allArticlesAreHidden = false;
       }
     });
-    if (hidden) {
+    if (allArticlesAreHidden) {
       hideElement(container);
     }
   });
@@ -61,14 +61,11 @@ function main(mutationsList) {
     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
       const addedNodes = Array.from(mutation.addedNodes);
       if (addedNodes.find((node) => node.matches && node.matches('.card'))) {
-        console.log('yo ');
         hideElements();
       }
     }
   }
 }
-
-// front-sponsored-heading
 
 const observer = new MutationObserver(main);
 observer.observe(document, { childList: true, subtree: true });

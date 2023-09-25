@@ -2,7 +2,7 @@
 
 <p>Hides plus articles and sponored segments on <a href="https://www.iltalehti.fi/">iltalehti.fi.</a></p>
 
-<h2>Add to chrome:<h2>
+<h2>Add to chrome:</h2>
 
 1. Download extension by pressing code-button on the top right => download zip
    - You can also clone this repository

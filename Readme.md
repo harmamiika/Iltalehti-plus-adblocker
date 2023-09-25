@@ -6,6 +6,6 @@
 
 1. Download extension by pressing code-button on the top right => download zip
    - You can also clone this repository
-2. Using Google Chrome, navigate to [chrome://extensions/](chrome://extensions/)
+2. Using Google Chrome, navigate to <a href="chrome://extensions/">chrome://extensions/</a>
 3. Select load unpacked on the top right
 4. Select the extension folder

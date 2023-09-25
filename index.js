@@ -50,22 +50,18 @@ const hideStickers = () => {
   });
 };
 
-const hideElements = () => {
-  hideStickers();
-  hideArticles();
-  hideContainers();
-};
-
-function main(mutationsList) {
+function root(mutationsList) {
   for (const mutation of mutationsList) {
     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
       const addedNodes = Array.from(mutation.addedNodes);
       if (addedNodes.find((node) => node.matches && node.matches('.card'))) {
-        hideElements();
+        hideStickers();
+        hideArticles();
+        hideContainers();
       }
     }
   }
 }
 
-const observer = new MutationObserver(main);
+const observer = new MutationObserver(root);
 observer.observe(document, { childList: true, subtree: true });

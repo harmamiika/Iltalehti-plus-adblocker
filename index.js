@@ -55,9 +55,10 @@ function root(mutationsList) {
     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
       const addedNodes = Array.from(mutation.addedNodes);
       if (addedNodes.find((node) => node.matches && node.matches('.card'))) {
-        hideStickers();
         hideArticles();
+        hideSponsoredSegments();
         hideContainers();
+        hideStickers();
       }
     }
   }
